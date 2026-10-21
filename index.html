@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiayi He (何佳一)</title>
+<meta name="description" content="Jiayi He — PhD student at Hefei University of Technology. Sign language production, diffusion models, and multimodal generation.">
+<style>
+  :root{
+    --accent:#3a6ea5;          /* 主色：学术蓝 */
+    --accent-dark:#2c5282;
+    --text:#2a2f36;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --bg:#ffffff;
+    --bg-soft:#f7f9fb;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Inter","Segoe UI","Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+    color:var(--text);background:var(--bg);line-height:1.75;font-size:16px;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{color:var(--accent-dark);text-decoration:underline;}
+
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px;}
+
+  /* 顶部姓名区 */
+  header{padding:56px 0 28px;}
+  .head-flex{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;}
+  .photo{
+    width:136px;height:136px;border-radius:50%;object-fit:cover;
+    border:3px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.10);
+  }
+  @media (max-width:640px){.photo{width:104px;height:104px;}}
+  h1{font-size:40px;font-weight:700;letter-spacing:.5px;}
+  h1 .cn{font-size:24px;font-weight:500;color:var(--muted);margin-left:10px;}
+  .tagline{font-size:18px;margin-top:8px;color:var(--text);}
+  .affil{color:var(--muted);margin-top:4px;}
+  .contact{margin-top:14px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .contact a{
+    display:inline-flex;align-items:center;gap:6px;
+    border:1px solid var(--line);border-radius:20px;padding:4px 14px;
+    font-size:14px;background:var(--bg-soft);transition:all .15s;
+  }
+  .contact a:hover{border-color:var(--accent);text-decoration:none;background:#fff;}
+  .contact svg{width:15px;height:15px;fill:var(--accent);}
+
+  /* 导航 */
+  nav{
+    position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);
+    border-bottom:1px solid var(--line);backdrop-filter:blur(6px);
+  }
+  nav .wrap{display:flex;gap:26px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap;}
+  nav a{font-size:14px;color:var(--muted);font-weight:500;}
+  nav a:hover{color:var(--accent);text-decoration:none;}
+
+  /* 板块 */
+  section{padding:36px 0 8px;}
+  h2{
+    font-size:22px;font-weight:700;margin-bottom:18px;
+    padding-bottom:8px;border-bottom:2px solid var(--accent);
+    display:inline-block;
+  }
+  p.bio{margin-bottom:12px;text-align:justify;}
+  .hl{font-weight:600;}
+  .scholar-box{
+    margin-top:16px;background:var(--bg-soft);border:1px solid var(--line);
+    border-radius:10px;padding:14px 18px;display:inline-flex;gap:28px;flex-wrap:wrap;
+  }
+  .scholar-box b{font-size:22px;display:block;}
+  .scholar-box span{font-size:13px;color:var(--muted);}
+
+  /* News */
+  details.news-item{border-bottom:1px dashed var(--line);padding:8px 0;}
+  details.news-item summary{
+    cursor:pointer;list-style:none;display:flex;gap:12px;align-items:baseline;
+  }
+  details.news-item summary::-webkit-details-marker{display:none;}
+  details.news-item summary::before{
+    content:"▸";color:var(--accent);font-size:12px;transition:transform .15s;
+  }
+  details.news-item[open] summary::before{transform:rotate(90deg);}
+  .news-date{color:var(--accent);font-weight:600;font-size:14px;white-space:nowrap;min-width:92px;}
+
+  /* Publications */
+  .pub{margin-bottom:26px;padding-left:16px;border-left:2px solid var(--line);transition:border-color .15s;}
+  .pub:hover{border-left-color:var(--accent);}
+  .pub-title{font-weight:600;font-size:16.5px;}
+  .pub-authors{font-size:14px;color:var(--muted);margin-top:2px;}
+  .pub-authors .me{color:var(--text);font-weight:600;}
+  .pub-venue{font-size:14px;margin-top:2px;}
+  .pub-venue em{font-style:italic;font-weight:600;}
+  .badge{
+    display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--accent);
+    border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:2px;letter-spacing:.4px;
+  }
+  .badge.gray{background:#8a94a3;}
+  .pub-links{margin-top:6px;font-size:13.5px;display:flex;gap:8px;flex-wrap:wrap;}
+  .pub-links a{
+    border:1px solid var(--line);border-radius:5px;padding:1px 9px;background:var(--bg-soft);
+  }
+  .pub-links a:hover{border-color:var(--accent);text-decoration:none;background:#fff;}
+
+  /* Awards / Education 列表 */
+  ul.plain{list-style:none;}
+  ul.plain li{
+    padding:8px 0 8px 22px;position:relative;border-bottom:1px dashed var(--line);
+  }
+  ul.plain li::before{content:"●";color:var(--accent);font-size:9px;position:absolute;left:4px;top:14px;}
+  .item-head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .item-title{font-weight:600;}
+  .item-note{color:var(--muted);font-size:14px;}
+  .item-date{color:var(--accent);font-weight:600;font-size:14px;white-space:nowrap;}
+
+  footer{
+    margin-top:56px;padding:22px 0 34px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:13.5px;text-align:center;
+  }
+  @media (max-width:640px){
+    h1{font-size:30px;} h1 .cn{font-size:18px;}
+    .item-date{width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="head-flex">
+    <div>
+    <h1>Jiayi He<span class="cn">何佳一</span></h1>
+    <div class="tagline">PhD Student, Computer Science and Technology</div>
+    <div class="affil">School of Computer Science and Information Engineering, Hefei University of Technology</div>
+    <div class="contact">
+      <a href="mailto:hejy4396@mail.hfut.edu.cn">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        hejy4396 (at) mail.hfut.edu.cn
+      </a>
+      <a href="https://scholar.google.com/citations?user=L6DratwAAAAJ" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M5.242 13.769 1 13.999 1 4l5.944-.002L12 8.296l4.912-4.3 6.088.006-.001 10-4.242-.23 3.518 3.519c.497.497.093 1.338-.546 1.338h-5.917l1.58 1.581c.39.39.297 1.04-.238 1.193-1.87.533-3.9.181-5.492-1.054A6.35 6.35 0 0 1 5.66 20.4c-.535-.153-.628-.803-.238-1.193L7.001 17.7H1.084c-.639 0-1.043-.841-.546-1.338l3.704-3.593zm7.758-2.817L9.19 7.082 12 4.711l2.81 2.371-2.81 3.87z"/></svg>
+        Google Scholar
+      </a>
+      <a href="https://github.com/你的用户名" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.04.77 2.1v3.12c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+    </div>
+    <img class="photo" src="photo.jpg" alt="Jiayi He">
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#bio">Bio</a>
+    <a href="#news">News</a>
+    <a href="#pubs">Publications</a>
+    <a href="#patent">Patent</a>
+    <a href="#awards">Honors &amp; Awards</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="bio">
+  <h2>Biography</h2>
+  <p class="bio">
+    I am currently a first-year Ph.D. student in the School of Computer Science and Information Engineering at
+    <span class="hl">Hefei University of Technology</span>, jointly supervised by
+    <span class="hl">Prof. Richang Hong</span> and <span class="hl">Dr. Shengeng Tang</span>.
+    Previously, I received my M.Eng. degree in Artificial Intelligence from Hefei University of Technology in 2026.
+    Before that, I received my B.Eng. degree in Computer Science and Technology from
+    Inner Mongolia University of Technology in 2024.
+  </p>
+  <p class="bio">
+    My research focuses on <span class="hl">sign language production</span> and
+    <span class="hl">human motion generation</span>, while I am also interested in
+    <span class="hl">diffusion generative models</span>, <span class="hl">multimodal learning</span>,
+    and <span class="hl">embodied AI</span>.
+  </p>
+  <div class="scholar-box">
+    <div><b>130+</b><span>Citations</span></div>
+    <div><b>5</b><span>h-index</span></div>
+    <div><b>10</b><span>Publications</span></div>
+    <div><b>2</b><span>CCF-A Papers</span></div>
+  </div>
+</section>
+
+<section id="news">
+  <h2>News</h2>
+  <details class="news-item" open>
+    <summary><span class="news-date">Sep 2026</span><span>Started my PhD at HFUT; released preprint <em>Naturalness-guided Manifold Flow Matching for Sign Language Production</em> (arXiv:2609.33339).</span></summary>
+  </details>
+  <details class="news-item">
+    <summary><span class="news-date">Jun 2026</span><span>Participated in the CVPR 2026 Embodied AI Workshop Manip.Arena Challenge (team leader listed members: A. Liu, J. He, X. Wang).</span></summary>
+  </details>
+  <details class="news-item">
+    <summary><span class="news-date">Mar 2026</span><span>Our invention patent on diffusion-based motion pose generation was granted (CN 120599688 B).</span></summary>
+  </details>
+  <details class="news-item">
+    <summary><span class="news-date">2025</span><span>Two CCF-A papers accepted (CVPR 2025, AAAI 2025); first-author paper at WWW Companion 2025; 2nd place in the CVPR 2025 Sign Language Production Challenge; awarded the National Scholarship for Master's Students.</span></summary>
+  </details>
+</section>
+
+<section id="pubs">
+  <h2>Publications</h2>
+  <p style="color:var(--muted);font-size:13.5px;margin-bottom:20px;">(* equal contribution, <span class="me" style="color:var(--text);font-weight:600;">Jiayi He</span> is highlighted) · Official indexing proof for all papers: <a href="files/proof-paper-indexing.pdf" target="_blank">[Proof PDF]</a></p>
+
+  <div class="pub">
+    <div class="pub-title">Naturalness-guided Manifold Flow Matching for Sign Language Production</div>
+    <div class="pub-authors"><span class="me">Jiayi He</span>, S. Tang, S. You, Y. Hao, L. Cheng, R. Hong</div>
+    <div class="pub-venue"><em>arXiv preprint</em> arXiv:2609.33339, 2026 <span class="badge gray">Preprint</span></div>
+    <div class="pub-links"><a href="https://arxiv.org/abs/2609.33339" target="_blank">arXiv</a></div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">Discrete to Continuous: Generating Smooth Transition Poses from Sign Language Observations</div>
+    <div class="pub-authors">S. Tang, <span class="me">Jiayi He</span>, L. Cheng, J. Wu, D. Guo, R. Hong</div>
+    <div class="pub-venue"><em>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2025 <span class="badge">CCF-A</span></div>
+    <div class="pub-links"><a href="files/pub-2025-cvpr-discrete-to-continuous.pdf" target="_blank">PDF</a> <a href="https://scholar.google.com/citations?user=L6DratwAAAAJ" target="_blank">Citations: 39</a></div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">Sign-IDD: Iconicity Disentangled Diffusion for Sign Language Production</div>
+    <div class="pub-authors">S. Tang, <span class="me">Jiayi He</span>, D. Guo, Y. Wei, F. Li, R. Hong</div>
+    <div class="pub-venue"><em>AAAI Conference on Artificial Intelligence (AAAI)</em>, 2025 <span class="badge">CCF-A</span></div>
+    <div class="pub-links">
+      <a href="files/pub-2025-aaai-sign-idd.pdf" target="_blank">PDF</a>
+      <a href="https://arxiv.org/abs/2412.13609" target="_blank">arXiv</a>
+      <a href="https://ojs.aaai.org/index.php/AAAI/article/view/32781" target="_blank">AAAI</a>
+      <a href="https://scholar.google.com/citations?user=L6DratwAAAAJ" target="_blank">Citations: 57</a>
+    </div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">Efficient Vision Language Model Fine-tuning for Text-based Person Anomaly Search</div>
+    <div class="pub-authors"><span class="me">Jiayi He</span>, S. Tang, A. Liu, L. Cheng, J. Wu, Y. Wei</div>
+    <div class="pub-venue"><em>Companion Proceedings of the ACM Web Conference (WWW Companion)</em>, Sydney, Australia, 2025, pp. 1568–1572</div>
+    <div class="pub-links"><a href="files/pub-2025-www-efficient-vlm.pdf" target="_blank">PDF</a> <a href="https://doi.org/10.1145/3701716.3717656" target="_blank">DOI</a></div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">StgcDiff: Spatial-Temporal Graph Condition Diffusion for Sign Language Transition Generation</div>
+    <div class="pub-authors">Jiashu He*, <span class="me">Jiayi He*</span>, S. Tang, H. Ben, L. Cheng, R. Hong</div>
+    <div class="pub-venue"><em>Proc. 3rd Int'l Workshop on Deep Multimodal Generation and Retrieval (MMGR), ACM Multimedia</em>, Dublin, Ireland, 2025</div>
+    <div class="pub-links"><a href="files/pub-2025-mmwr-stgcdiff.pdf" target="_blank">PDF</a> <a href="https://doi.org/10.1145/3746266.3762157" target="_blank">DOI</a></div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">Continuous Sign Language Pose Generation via Text-driven Diffusion Model</div>
+    <div class="pub-authors"><span class="me">Jiayi He*</span>, G. Zhang*, X. Wang, R. Zhang, A. Liu, J. Guo</div>
+    <div class="pub-venue"><em>4th Int'l Conference on Artificial Intelligence, Human-Computer Interaction and Robotics (AIHCIR)</em>, IEEE, 2025</div>
+    <div class="pub-links"><a href="files/pub-2025-aihcir-continuous-slp-tdm.pdf" target="_blank">PDF</a> <a href="https://scholar.google.com/citations?user=L6DratwAAAAJ" target="_blank">Google Scholar</a></div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">SLRTP2025 Sign Language Production Challenge: Methodology, Results, and Future Work</div>
+    <div class="pub-authors">H. Walsh, E. Fish, O. M. Sincan, …, <span class="me">Jiayi He</span>, et al. (consortium paper, HFUT team ranked 2nd)</div>
+    <div class="pub-venue"><em>CVPR Workshop (SLRTP)</em>, 2025</div>
+    <div class="pub-links"><a href="https://slrtpworkshop.github.io/" target="_blank">Workshop</a></div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">Mamba-Lip: Revolutionizing Lip Reading Generation with Selective State Space Models</div>
+    <div class="pub-authors">X. Wang, Y. Jiao, <span class="me">Jiayi He</span>, Y. Wang, L. Cheng, S. Tang</div>
+    <div class="pub-venue"><em>4th Int'l Conference on Artificial Intelligence, Human-Computer Interaction and Robotics (AIHCIR)</em>, IEEE, 2025</div>
+    <div class="pub-links"><a href="files/pub-2025-aihcir-mamba-lip.pdf" target="_blank">PDF</a> <a href="https://scholar.google.com/citations?user=L6DratwAAAAJ" target="_blank">Google Scholar</a></div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">Motion is the Choreographer: Learning Latent Pose Dynamics for Seamless Sign Language Generation</div>
+    <div class="pub-authors"><span class="me">Jiayi He</span>, X. Wang, S. Tang, Y. Wang, L. Cheng, D. Guo</div>
+    <div class="pub-venue"><em>arXiv preprint</em> arXiv:2508.04049, 2025 <span class="badge gray">Preprint</span></div>
+    <div class="pub-links"><a href="https://arxiv.org/abs/2508.04049" target="_blank">arXiv</a></div>
+  </div>
+</section>
+
+<section id="patent">
+  <h2>Patent</h2>
+  <ul class="plain">
+    <li>
+      <div class="item-head">
+        <span class="item-title">基于扩散模型的相似性解纠缠运动姿态生成方法<br><span style="font-weight:400;font-size:14px;">(Diffusion-based Similarity-Disentangled Motion Pose Generation)</span></span>
+        <span class="item-date">Granted, Mar 2026</span>
+      </div>
+      <div class="item-note">Chinese invention patent · No. ZL 2025 1 0492536.8 (CN 120599688 B) · Assignee: Hefei University of Technology · Inventors: S. Tang, <b>Jiayi He</b>, J. He, S. Wang, L. Cheng, R. Hong (2nd inventor; technical scheme, experiments, and drafting all completed by me) · <a href="files/cert-patent.pdf" target="_blank">[Certificate]</a></div>
+    </li>
+  </ul>
+</section>
+
+<section id="awards">
+  <h2>Honors &amp; Awards</h2>
+  <ul class="plain">
+    <li>
+      <div class="item-head">
+        <span class="item-title">National Scholarship for Master's Students</span>
+        <span class="item-date">2025</span>
+      </div>
+      <div class="item-note">Ministry of Education of China · National level · <a href="files/cert-national-scholarship.pdf" target="_blank">[Certificate]</a></div>
+    </li>
+    <li>
+      <div class="item-head">
+        <span class="item-title">2nd Place, CVPR 2025 Sign Language Production Challenge</span>
+        <span class="item-date">Jun 2025</span>
+      </div>
+      <div class="item-note">SLRTP 2025 (3rd Workshop on Sign Language Recognition, Translation and Production) · 6-member HFUT team; method design, implementation, and debugging all completed by me · <a href="files/cert-cvpr2025-slrtp-2nd.pdf" target="_blank">[Certificate]</a></div>
+    </li>
+    <li>
+      <div class="item-head">
+        <span class="item-title">Award, WWW 2025 MORE Challenge</span>
+        <span class="item-date">Apr 2025</span>
+      </div>
+      <div class="item-note">ACM Web Conference 2025 · 6-member team, listed first on the award list; related work published at WWW Companion 2025 · <a href="files/cert-www2025-more-challenge.pdf" target="_blank">[Certificate]</a></div>
+    </li>
+    <li>
+      <div class="item-head">
+        <span class="item-title">Academic Scholarship, Hefei University of Technology</span>
+        <span class="item-date">2024–2025</span>
+      </div>
+      <div class="item-note">University level · <a href="files/cert-academic-scholarship.pdf" target="_blank">[Certificate]</a></div>
+    </li>
+    <li>
+      <div class="item-head">
+        <span class="item-title">19th Place (Preliminary Round), CVPR 2026 Manip.Arena Challenge</span>
+        <span class="item-date">Jun 2026</span>
+      </div>
+      <div class="item-note">CVPR 2026 Embodied AI Workshop · 3-member team · <a href="files/cert-cvpr2026-manip-arena.jpg" target="_blank">[Certificate]</a></div>
+    </li>
+  </ul>
+</section>
+
+
+</main>
+
+<footer>
+  © 2024–2026 Jiayi He · Last updated: Oct 2026 ·
+  <a href="https://scholar.google.com/citations?user=L6DratwAAAAJ" target="_blank">Google Scholar</a>
+</footer>
+
+</body>
+</html>
